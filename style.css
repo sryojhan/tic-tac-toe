@@ -15,8 +15,15 @@
 
 :root.dark::selection {
 
-  background-color: white;
+  background-color: rgb(255, 128, 128);
   color: white;
+}
+
+:root{
+
+
+  --main-color: #ff8080;
+  --dark-color: #6e2929;
 }
 
 body{
@@ -24,33 +31,145 @@ body{
   background-color: var(--color-base-bg);
 
   padding: 0px;
+  font-family: "UnifrakturCook", system-ui;
+
+  color: var(--main-color);
+
 }
-
-
 
 .grid{
 
   display: grid;
 
-  width: 900px;
-  height: 900px;
+  margin: auto;
+
+  width: 700px;
+  height: 700px;
 
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
 
   user-select: none;
   gap: 10px;
-  background-color: grey;
-
 }
 
 
 .cell{
 
-  color: black;
-  background-color: rgb(255, 128, 128);
+  color: var(--color-base-bg);
+  background-color: var(--main-color);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  font-family: "UnifrakturCook", system-ui;
+  font-size: 100px;
+
+
+  transition: background-color .2s ease-out;
 }
+
+
+.cell:hover.empty{
+
+  background-color: var(--dark-color);
+
+  transition: background-color .2s ease-out;
+
+  cursor: pointer;
+
+}
+
+
+.player-names{
+
+  width: 700px;
+  margin: auto;
+  display: flex;
+  justify-content:space-between;
+
+  align-items: baseline;
+}
+
+.results{
+
+  width: 700px;
+  margin: 10px auto;
+
+  display: none;
+}
+
+.results.visible{
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.results button{
+
+  font-size: inherit;
+  height: 3em;
+  width: 100%;
+
+  background-color: var(--main-color);
+}
+
+
+.results h1{
+
+  color: var(--main-color);
+}
+
+
+.player-names h1{
+  color: var(--dark-color);
+}
+
+.player-names .current-player{
+
+  color: var(--main-color);
+  font-size: 2.5em;
+}
+
+
+.cell.win{
+
+  color: var(--main-color);
+  background-color: transparent;
+
+  animation: color 0s ease-out;
+}
+
+
+.cell.win.first{
+  animation: win 1s 1 ease-in-out 0s;
+
+}
+
+.cell.win.second{
+  animation: win 1s 1 ease-in-out .250s;
+
+}
+
+.cell.win.third{
+  animation: win 1s 1 ease-in-out .50s;
+
+}
+
+
+@keyframes win{
+
+  0%{
+    background-color: transparent;
+    transform: rotateY(0deg);
+  }
+  100%{
+    background-color: transparent;
+    transform: rotateY(720deg);
+  }
+}
+
+
